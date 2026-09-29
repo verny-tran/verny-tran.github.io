@@ -23,7 +23,7 @@
     --tile: url("assets/fill.png");
     --tile-strong: url("assets/fill-strong.png");
 
-    --font-display: "chapman-condensed", "chapman", "Chapman Black Condensed", "Noto Serif Display", ui-serif, Georgia, serif;
+    --font-display: chapman-condensed, "Chapman Black Condensed", "Noto Serif Display", ui-serif, Georgia, serif;
     --font-serif: ui-serif, "New York", "Source Serif 4", Georgia, serif;
     --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", Inter, "Segoe UI", Roboto, sans-serif;
     --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
