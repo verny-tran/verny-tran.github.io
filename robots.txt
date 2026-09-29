@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://verny.com/sitemap.xml
+Sitemap: https://verny-tran.github.io/sitemap.xml
