@@ -1,42 +1,18 @@
-/* Measured from the Pages résumé (assets/resume.pdf). One PDF point is
-   drawn as 1.6 CSS px, so the 537 pt content width becomes 860 px.
-
-   Fonts, in résumé order of use:
-   - Name and "iOS DEVELOPER": vector outlines taken from the résumé PDF
-     (assets/masthead.svg), so no font file is needed
-   - Headings: New York Extra Large Black (ui-serif on Apple devices)
-   - Body: SF Pro (the Apple system font)
-   - Code, links, contact: SF Mono (ui-monospace on Apple devices)
-   The Apple stacks end in the closest Google Fonts face with Vietnamese
-   glyphs, downloaded only on devices without the Apple font. */
+/* The résumé pages are SVG drawings of assets/resume.pdf, shown at 1.6 CSS
+   px per PDF point. An invisible text layer with every character at its
+   PDF position sits on top, so the text can be selected, searched and read
+   aloud, and the links can be clicked. */
 
 :root {
     color-scheme: light;
-
-    /* Colours as stored in the PDF. Ink, outline and accent are Display P3
-       there; these are their sRGB equivalents, upgraded to P3 below. */
-    --paper: #f7f3ed;
     --ink: #204e5a;
-    --outline: #15384d;
-    --fill: #bac7ce;
+    --paper: #f7f3ed;
     --accent: #cb2d18;
-    --tile: url("assets/fill.png");
-    --tile-strong: url("assets/fill-strong.png");
-
-    --font-serif: ui-serif, "New York", "Source Serif 4", Georgia, serif;
-    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", Inter, "Segoe UI", Roboto, sans-serif;
-    --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
-
-    --line: 2px;          /* 1.25 pt card border */
-    --radius: 25px;       /* 24 pt continuous corner */
-    --radius-inner: 18px;
-    --gap: 14px;          /* 9 pt between cards */
 }
 
 @supports (color: color(display-p3 0 0 0)) {
     :root {
         --ink: color(display-p3 0.1725 0.3020 0.3490);
-        --outline: color(display-p3 0.1176 0.2157 0.2941);
         --accent: color(display-p3 0.7333 0.2353 0.1529);
     }
 }
@@ -47,82 +23,11 @@
     box-sizing: border-box;
 }
 
-html {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-}
-
 body {
     margin: 0;
-    background: var(--paper);
+    background: #fff;
     color: var(--ink);
-    font: 400 1rem/1.4 var(--font-sans);
-}
-
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
-a {
-    color: inherit;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.16em;
-}
-
-a:hover {
-    color: var(--accent);
-}
-
-:focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: 2px;
-}
-
-h1,
-h2,
-h3,
-p,
-ul,
-ol,
-dl,
-dd {
-    margin: 0;
-}
-
-ul,
-ol {
-    padding: 0;
-    list-style: none;
-}
-
-/* SF Pro weights used in the résumé: 400, 510, 590, 700. */
-strong,
-b {
-    font-weight: 700;
-}
-
-.w5 { font-weight: 510; }
-.w6 { font-weight: 590; }
-
-em,
-.meta {
-    font-style: italic;
-}
-
-.meta {
-    font-weight: 590;
-}
-
-.u {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.16em;
-}
-
-.mono {
-    font-family: var(--font-mono);
+    font: 1rem/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .visually-hidden {
@@ -134,369 +39,73 @@ em,
     white-space: nowrap;
 }
 
-.skip-link {
-    position: absolute;
-    left: 1rem;
-    top: -3rem;
-    padding: 0.5rem 0.9rem;
-    border-radius: 8px;
-    background: var(--ink);
-    color: var(--paper);
-    z-index: 1;
-}
-
-.skip-link:focus {
-    top: 1rem;
-}
-
-.icon {
-    width: 1.15em;
-    height: 1.15em;
-    flex: none;
-    fill: currentColor;
-}
-
-/* Layout: the résumé's 192 pt sidebar and 336 pt main column. */
-
-.layout {
+.sheets {
     display: grid;
-    grid-template-columns: 307px minmax(0, 538px);
-    justify-content: center;
-    gap: var(--gap);
-    align-items: start;
-    padding: 46px 24px 30px;
+    justify-items: center;
+    gap: 16px;
+    padding: 16px;
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap);
-}
-
-@media (max-width: 900px) {
-    .layout {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        max-width: 560px;
-        margin: 0 auto;
-        padding: 24px 16px;
-    }
-
-    .column {
-        display: contents;
-    }
-
-    .column > * {
-        order: var(--order, 0);
-    }
-}
-
-/* Masthead */
-
-/* assets/masthead.svg is the résumé's name and outlined role, cut from the
-   PDF with the main column's width, so both keep its exact size and
-   alignment. It starts 2 pt above the column, hence the negative margin. */
-
-.masthead img {
-    width: 100%;
-    margin-top: -0.59%;
-}
-
-/* 404 page subtitle, in the résumé's outlined SF Mono */
-
-.role {
-    font: 700 clamp(2.1rem, 8.4vw, 4rem)/1.1 var(--font-mono);
-    color: var(--paper);
-    -webkit-text-stroke: 1.6px var(--outline);
-    white-space: nowrap;
-}
-
-/* Cards */
-
-.card {
+.sheet {
     position: relative;
-    border: var(--line) solid var(--ink);
-    border-radius: var(--radius);
-    background: var(--paper);
-    padding: 18px 20px;
+    width: min(100%, 952px);
 }
 
-.card--filled {
-    background: var(--fill);
+.sheet img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
-.card--tiled {
-    background: var(--tile) 0 0 / 16px 16px repeat;
-}
-
-.card--tiled-strong {
-    background-image: var(--tile-strong);
-}
-
-.card--titled {
-    margin-top: 14px;
-    padding-top: 26px;
-}
-
-.card h2 {
-    font: 900 1.625rem/1.1 var(--font-serif);
-}
-
-.card--titled > h2 {
+.text-layer {
     position: absolute;
-    top: 0;
-    left: 18px;
-    transform: translateY(-56%);
-    padding: 0 3px;
-    background: var(--paper);
-}
-
-.card--tiled > h2 {
-    margin: 0 0 12px 10px;
-}
-
-.inner {
-    border: var(--line) solid var(--accent);
-    border-radius: var(--radius-inner);
-    background: var(--paper);
-    padding: 12px 14px;
-}
-
-.portrait {
-    padding: 0;
-    overflow: hidden;
-    aspect-ratio: 600 / 796;
-}
-
-.portrait img {
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
 }
 
-/* Contact: 12 pt SF Pro for the phone, SF Mono with the domain in
-   semibold for the rest, shrunk per line to fit as in the résumé. */
-
-.contact {
-    padding: 18px 16px;
+.text-layer text {
+    fill: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    white-space: pre;
 }
 
-.contact ul {
-    display: grid;
-    gap: 14px;
+.text-layer text::selection {
+    fill: transparent;
+    background: rgb(32 78 90 / 0.25);
 }
 
-.contact a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    white-space: nowrap;
+.text-layer rect {
+    fill: transparent;
+    cursor: pointer;
 }
 
-.contact a:hover span {
-    text-decoration: underline;
+.text-layer a:focus-visible rect {
+    stroke: var(--accent);
+    stroke-width: 1.5;
 }
-
-.contact .phone { font: 590 19px/1.2 var(--font-sans); }
-.contact .email { font: 400 19px/1.2 var(--font-mono); }
-.contact .linkedin { font: 400 15.5px/1.2 var(--font-mono); }
-.contact .github { font: 400 18.5px/1.2 var(--font-mono); }
-
-.contact .icon {
-    width: 22px;
-    height: 22px;
-}
-
-.download {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 16px;
-    border: var(--line) solid var(--ink);
-    border-radius: var(--radius);
-    background: var(--ink);
-    color: var(--paper);
-    font: 590 1rem/1.2 var(--font-sans);
-    text-decoration: none;
-}
-
-.download:hover {
-    background: var(--paper);
-    color: var(--ink);
-}
-
-/* Sidebar cards */
-
-.languages li {
-    font-size: 22px;
-    line-height: 1.4;
-}
-
-.languages li::before {
-    content: "•";
-    margin: 0 8px 0 4px;
-}
-
-.programming .inner {
-    font: 400 17.5px/1.45 var(--font-mono);
-}
-
-.stacks .inner {
-    display: grid;
-    gap: 9px;
-    font: 400 13px/1.4 var(--font-mono);
-}
-
-.stacks dt {
-    display: inline;
-    font: 700 13px/1.4 var(--font-sans);
-}
-
-.stacks dd {
-    display: inline;
-}
-
-.hobbies p {
-    margin: 0 10px 4px;
-    font-size: 22px;
-    line-height: 1.3;
-}
-
-/* Main column */
-
-.intro h2 {
-    margin-bottom: 8px;
-    font-size: 1.8rem;
-}
-
-.intro p {
-    text-indent: 1em;
-}
-
-@media (min-width: 901px) {
-    .intro p,
-    .justify {
-        text-align: justify;
-        hyphens: auto;
-    }
-}
-
-.education p {
-    font-size: 20px;
-    line-height: 1.3;
-}
-
-.education .meta {
-    font-size: 19px;
-}
-
-.entries {
-    display: grid;
-    gap: 14px;
-}
-
-.employment h3 {
-    font: 700 21px/1.3 var(--font-sans);
-}
-
-.employment h3 .role-title {
-    font-weight: 400;
-}
-
-.employment .meta {
-    font-size: 16px;
-}
-
-.employment p {
-    margin-top: 2px;
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.awards h3 {
-    font: 400 16px/1.35 var(--font-sans);
-}
-
-.awards h3 .meta {
-    font-size: 14.5px;
-}
-
-.note {
-    margin: 4px 0 0 6px;
-    font: 400 13px/1.4 var(--font-mono);
-}
-
-.note .w6 {
-    font-weight: 600;
-}
-
-.frameworks .inner {
-    display: grid;
-    gap: 9px;
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.publications li {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: 6px;
-    font-size: 19px;
-    line-height: 1.3;
-}
-
-.publications .doi {
-    grid-column: 2;
-    margin-top: 6px;
-    font-size: 14.5px;
-}
-
-.doi a,
-.link a {
-    font-family: var(--font-mono);
-    overflow-wrap: anywhere;
-}
-
-.patents li {
-    font-size: 19px;
-    line-height: 1.3;
-}
-
-.patents .filing {
-    margin: 3px 0 0 14px;
-    font-size: 17.5px;
-}
-
-.grants h3 {
-    font: 400 19px/1.3 var(--font-sans);
-}
-
-.grants p {
-    margin-top: 6px;
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.grants .funded {
-    text-indent: 1.2em;
-}
-
-/* Footer */
 
 .site-footer {
-    padding: 0 16px 36px;
-    font-size: 14px;
+    padding: 8px 16px 40px;
     text-align: center;
 }
 
-/* 404 page */
-
-.error-code {
-    font: 900 4rem/1 var(--font-serif);
+.download {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 25px;
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 590;
+    text-decoration: none;
 }
+
+.download:hover,
+.download:focus-visible {
+    background: var(--accent);
+}
+
+/* 404 page */
 
 .not-found {
     display: grid;
@@ -508,14 +117,23 @@ em,
     text-align: center;
 }
 
+.error-code {
+    margin: 0;
+    font: 900 4rem/1 ui-serif, "New York", Georgia, serif;
+}
+
 @media print {
-    .skip-link,
-    .download,
     .site-footer {
         display: none;
     }
 
-    .card {
-        break-inside: avoid;
+    .sheets {
+        display: block;
+        padding: 0;
+    }
+
+    .sheet {
+        width: 100%;
+        break-after: page;
     }
 }
