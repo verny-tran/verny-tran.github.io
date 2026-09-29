@@ -2,20 +2,11 @@
 
 Personal site of Trần Trung Dũng (Verny), served by GitHub Pages from the `main` branch at [verny-tran.github.io](https://verny-tran.github.io).
 
-The home page shows the résumé exactly as the PDF looks. Each page is an SVG drawing of `assets/resume.pdf`, with an invisible text layer on top, so the text can still be selected, searched and read by screen readers and search engines, and the links work.
+Plain HTML and CSS with no build step. The page is a web version of the Pages résumé (`assets/resume.pdf`): the layout, spacing, colours and emphasis are measured from the PDF, at 1.6 CSS px per point.
 
-## Updating the résumé
-
-1. Export the résumé from Pages as PDF and save it over `assets/resume.pdf`.
-2. Regenerate the pages:
-
-   ```sh
-   pip install pymupdf pillow
-   python3 tools/pdf_to_site.py
-   ```
-
-   This rewrites `assets/resume/page-*.svg` and the pages section of `index.html`.
-3. Commit and push to `main`.
+- Fonts are the résumé's own: SF Pro, SF Mono and New York on Apple devices, with Inter, JetBrains Mono and Source Serif 4 as fallbacks elsewhere.
+- `assets/masthead.svg` holds the name and "iOS DEVELOPER" as outlines taken from the PDF, and the contact icons in `index.html` are the PDF's glyph outlines too.
+- On screens narrower than 900 px the two columns become one, with the smallest text sizes raised.
 
 ## Custom domain
 
