@@ -2,8 +2,8 @@
    drawn as 1.6 CSS px, so the 537 pt content width becomes 860 px.
 
    Fonts, in résumé order of use:
-   - Name: Chapman Black Condensed, as vector outlines taken from the
-     résumé PDF (assets/name.svg), so no font file is needed
+   - Name and "iOS DEVELOPER": vector outlines taken from the résumé PDF
+     (assets/masthead.svg), so no font file is needed
    - Headings: New York Extra Large Black (ui-serif on Apple devices)
    - Body: SF Pro (the Apple system font)
    - Code, links, contact: SF Mono (ui-monospace on Apple devices)
@@ -194,18 +194,16 @@ em,
 
 /* Masthead */
 
-.masthead {
-    padding: 0 0 4px 10px;
+/* assets/masthead.svg is the résumé's name and outlined role, cut from the
+   PDF with the main column's width, so both keep its exact size and
+   alignment. It starts 2 pt above the column, hence the negative margin. */
+
+.masthead img {
+    width: 100%;
+    margin-top: -0.59%;
 }
 
-.name {
-    margin: 2px 0 10px;
-}
-
-.name img {
-    width: 526px;
-    max-width: 100%;
-}
+/* 404 page subtitle, in the résumé's outlined SF Mono */
 
 .role {
     font: 700 clamp(2.1rem, 8.4vw, 4rem)/1.1 var(--font-mono);
