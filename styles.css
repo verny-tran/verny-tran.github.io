@@ -1,169 +1,468 @@
-/**
-*  Publish Foundation theme
-*  Copyright (c) John Sundell 2019
-*  MIT license, see LICENSE file for details
-*/
+/* Palette and type follow the Pages résumé: slate ink on warm paper,
+   blue-grey fills and the dotted "Fill" tiles. */
 
-* {
-    margin: 0;
-    padding: 0;
+:root {
+    color-scheme: light dark;
+
+    --paper: #f7f3ed;
+    --surface: #f7f3ed;
+    --ink: #374a51;
+    --ink-soft: #56676e;
+    --fill: #bac7ce;
+    --line: #374a51;
+    --accent: #8d4d41;
+    --tile: url("assets/fill.png");
+    --tile-strong: url("assets/fill-strong.png");
+
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-slab: "Roboto Slab", ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+    --radius: 18px;
+    --gap: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #1b2226;
+        --surface: #1b2226;
+        --ink: #dfe6e9;
+        --ink-soft: #a9b6bc;
+        --fill: #2c3a41;
+        --line: #8fa3ad;
+        --accent: #e0907f;
+        --tile: url("assets/fill-dark.png");
+        --tile-strong: url("assets/fill-strong-dark.png");
+    }
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 body {
-    background: #fff;
-    color: #000;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont;
-    text-align: center;
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 1rem/1.55 var(--font-sans);
 }
 
-.wrapper {
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 40px;
-    text-align: left;
-}
-
-header {
-    background-color: #eee;
-}
-
-header .wrapper {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-}
-
-header a {
-    text-decoration: none;
-}
-
-header .site-name {
-    font-size: 1.5em;
-    color: #000;
-    font-weight: bold;
-}
-
-nav {
-    margin-top: 20px;
-}
-
-nav li {
-    display: inline-block;
-    margin: 0 7px;
-    line-height: 1.5em;
-}
-
-nav li a.selected {
-    text-decoration: underline;
-}
-
-h1 {
-    margin-bottom: 20px;
-    font-size: 2em;
-}
-
-h2 {
-    margin: 20px 0;
-}
-
-p {
-    margin-bottom: 10px;
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 a {
     color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
 }
 
-.description {
-    margin-bottom: 40px;
+a:hover {
+    color: var(--accent);
 }
 
-.item-list > li {
-    display: block;
-    padding: 20px;
-    border-radius: 20px;
-    background-color: #eee;
-    margin-bottom: 20px;
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
 }
 
-.item-list > li:last-child {
-    margin-bottom: 0;
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd {
+    margin: 0;
 }
 
-.item-list h1 {
-    margin-bottom: 15px;
-    font-size: 1.3em;
+ul,
+ol {
+    padding: 0;
+    list-style: none;
 }
 
-.item-list p {
-    margin-bottom: 0;
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
 }
 
-.tag-list {
-    margin-bottom: 15px;
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -3rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    z-index: 1;
 }
 
-.tag-list li,
-.tag {
+.skip-link:focus {
+    top: 1rem;
+}
+
+.icon {
+    width: 1.1em;
+    height: 1.1em;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Layout: a narrow sidebar beside the main column on wide screens,
+   one reordered column on phones. */
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+    gap: var(--gap);
+    align-items: start;
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+@media (max-width: 52rem) {
+    .layout {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem 16px;
+    }
+
+    .column {
+        display: contents;
+    }
+
+    .masthead { order: 1; }
+    .portrait { order: 2; }
+    .contact { order: 3; }
+    .download { order: 4; }
+    .column--main > .card { order: 5; }
+    .column--side > .card--tiled { order: 6; }
+}
+
+/* Masthead */
+
+.masthead {
+    padding-top: 0.25rem;
+}
+
+.name {
+    font: 900 clamp(2rem, 6vw, 3.6rem)/1.05 var(--font-slab);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+.nickname {
     display: inline-block;
-    background-color: #000;
-    color: #ddd;
-    padding: 4px 6px;
-    border-radius: 5px;
-    margin-right: 5px;
+    font-size: 0.55em;
+    font-weight: 700;
+    color: var(--ink-soft);
+    text-transform: none;
+    vertical-align: 0.3em;
 }
 
-.tag-list a,
-.tag a {
+.role {
+    margin-top: 0.35rem;
+    font: 700 clamp(1.8rem, 5.4vw, 3.1rem)/1.1 var(--font-mono);
+    letter-spacing: 0.04em;
+}
+
+@supports (-webkit-text-stroke: 1px black) {
+    .role {
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--ink);
+    }
+}
+
+.caps {
+    text-transform: uppercase;
+}
+
+/* Cards */
+
+.card {
+    position: relative;
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 1.1rem 1.25rem;
+}
+
+.card--filled {
+    background: var(--fill);
+}
+
+.card--tiled {
+    background: var(--tile) repeat;
+}
+
+.card--tiled-strong {
+    background-image: var(--tile-strong);
+}
+
+.card--titled {
+    margin-top: 0.75rem;
+    padding-top: 1.5rem;
+}
+
+.card h2 {
+    font: 800 1.45rem/1.2 var(--font-slab);
+}
+
+.card--titled > h2 {
+    position: absolute;
+    top: 0;
+    left: 0.9rem;
+    transform: translateY(-58%);
+    padding: 0 0.4rem;
+    background: var(--paper);
+}
+
+.card--tiled > h2 {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    padding: 0 0.4rem;
+    border-radius: 6px;
+    background: var(--paper);
+}
+
+.portrait {
+    padding: 0;
+    overflow: hidden;
+    aspect-ratio: 600 / 796;
+}
+
+.portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contact */
+
+.contact ul {
+    display: grid;
+    gap: 0.55rem;
+    font: 0.95rem/1.35 var(--font-mono);
+}
+
+.contact a {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.contact a:hover span {
+    text-decoration: underline;
+}
+
+.download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius);
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 600;
     text-decoration: none;
 }
 
-.item-page .tag-list {
-    display: inline-block;
+.download:hover {
+    background: var(--accent);
+    color: var(--paper);
 }
 
-.content {
-    margin-bottom: 40px;
+/* Sidebar lists */
+
+.card--tiled .bullets,
+.card--tiled .plain-list {
+    padding: 0.7rem 0.9rem;
+    border-radius: 12px;
+    background: var(--paper);
 }
 
-.browse-all {
-    display: block;
-    margin-bottom: 30px;
+.bullets {
+    display: grid;
+    gap: 0.25rem;
+    font-size: 1.05rem;
 }
 
-.all-tags li {
-    font-size: 1.4em;
-    margin-right: 10px;
-    padding: 6px 10px;
+.bullets li::before {
+    content: "•";
+    margin-right: 0.5rem;
 }
 
-footer {
-    color: #8a8a8a;
+.bullets span {
+    color: var(--ink-soft);
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #222;
+.code-box {
+    padding: 0.8rem 0.9rem;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    background: var(--paper);
+    font: 0.95rem/1.5 var(--font-mono);
+}
+
+.plain-list {
+    line-height: 1.6;
+}
+
+/* Main column */
+
+.intro h2 {
+    margin-bottom: 0.6rem;
+}
+
+@media (min-width: 52.01rem) {
+    .intro p {
+        text-align: justify;
+        hyphens: auto;
+    }
+}
+
+.entries {
+    display: grid;
+    gap: 1rem;
+}
+
+.entry h3 {
+    font-size: 1.05rem;
+    line-height: 1.35;
+}
+
+.entry .meta {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink-soft);
+}
+
+.entry p {
+    margin-top: 0.2rem;
+}
+
+.note {
+    margin-top: 0.25rem;
+    font: 0.85rem/1.45 var(--font-mono);
+    color: var(--ink-soft);
+}
+
+.publications {
+    counter-reset: publication;
+}
+
+.publications li {
+    counter-increment: publication;
+    padding-left: 2.2rem;
+    position: relative;
+}
+
+.publications li::before {
+    content: "[" counter(publication) "]";
+    position: absolute;
+    left: 0;
+    font: 700 0.95rem/1.6 var(--font-mono);
+}
+
+.doi {
+    font: 0.85rem/1.5 var(--font-mono);
+    overflow-wrap: anywhere;
+}
+
+.pairs {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.pairs dt {
+    font-weight: 700;
+}
+
+.pairs dd {
+    margin-top: 0.1rem;
+}
+
+@media (min-width: 40rem) {
+    .pairs--inline {
+        grid-template-columns: max-content 1fr;
+        column-gap: 1rem;
+        row-gap: 0.45rem;
     }
 
-    body,
-    header .site-name {
-        color: #ddd;
-    }
-
-    .item-list > li {
-        background-color: #333;
-    }
-
-    header {
-        background-color: #000;
+    .pairs--inline dd {
+        margin-top: 0;
     }
 }
 
-@media(max-width: 600px) {
-    .wrapper {
-        padding: 40px 20px;
+/* Footer */
+
+.site-footer {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 2.5rem;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+@media (max-width: 52rem) {
+    .site-footer {
+        padding: 0 16px 1.5rem;
+    }
+}
+
+/* 404 page */
+
+.not-found {
+    display: grid;
+    place-content: center;
+    gap: 1rem;
+    min-height: 100vh;
+    padding: 16px;
+    text-align: center;
+}
+
+.not-found .download {
+    justify-self: center;
+}
+
+@media print {
+    .skip-link,
+    .download,
+    .site-footer {
+        display: none;
+    }
+
+    .card {
+        break-inside: avoid;
     }
 }
