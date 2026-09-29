@@ -207,9 +207,37 @@ em {
 }
 
 .inner {
+    position: relative;
     border: var(--line) solid var(--accent);
     border-radius: var(--radius-inner);
     background: var(--paper);
+}
+
+/* Continuous corners (corners.js): the ground is clipped to the résumé's
+   corner shape and the border is stroked by an SVG over the border box.
+   The CSS border stays for its width, drawn transparent. Without the script
+   the circular border-radius above is the fallback. */
+
+.has-continuous-corners {
+    border-color: transparent;
+}
+
+.portrait.has-continuous-corners {
+    overflow: visible;
+}
+
+.corner-stroke {
+    position: absolute;
+    top: calc(-1 * var(--line));
+    left: calc(-1 * var(--line));
+    overflow: visible;
+    fill: none;
+    stroke: var(--ink);
+    pointer-events: none;
+}
+
+.inner > .corner-stroke {
+    stroke: var(--accent);
 }
 
 /* Masthead: the PDF's outlines, cut to the main column's width. They start
