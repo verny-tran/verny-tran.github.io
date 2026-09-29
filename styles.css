@@ -2,12 +2,13 @@
    drawn as 1.6 CSS px, so the 537 pt content width becomes 860 px.
 
    Fonts, in résumé order of use:
-   - Name: Chapman Black Condensed (Adobe Fonts web kit, see index.html)
+   - Name: Noto Serif Display Condensed Black, a free stand-in for the
+     résumé's Chapman Black Condensed
    - Headings: New York Extra Large Black (ui-serif on Apple devices)
    - Body: SF Pro (the Apple system font)
    - Code, links, contact: SF Mono (ui-monospace on Apple devices)
-   Each stack ends in the closest Google Fonts face with Vietnamese glyphs,
-   downloaded only on devices without the Apple font. */
+   The Apple stacks end in the closest Google Fonts face with Vietnamese
+   glyphs, downloaded only on devices without the Apple font. */
 
 :root {
     color-scheme: light;
@@ -23,7 +24,7 @@
     --tile: url("assets/fill.png");
     --tile-strong: url("assets/fill-strong.png");
 
-    --font-display: chapman-condensed, "Chapman Black Condensed", "Noto Serif Display", ui-serif, Georgia, serif;
+    --font-display: "Noto Serif Display", ui-serif, Georgia, serif;
     --font-serif: ui-serif, "New York", "Source Serif 4", Georgia, serif;
     --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", Inter, "Segoe UI", Roboto, sans-serif;
     --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
@@ -201,7 +202,8 @@ em,
 
 .name {
     font: 900 clamp(2.2rem, 7vw, 3.4rem)/1.08 var(--font-display);
-    font-stretch: condensed;
+    letter-spacing: 0.04em;
+    font-stretch: 75%;
     color: var(--name);
     text-transform: uppercase;
 }
