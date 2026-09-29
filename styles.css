@@ -2,8 +2,8 @@
    drawn as 1.6 CSS px, so the 537 pt content width becomes 860 px.
 
    Fonts, in résumé order of use:
-   - Name: Noto Serif Display Condensed Black, a free stand-in for the
-     résumé's Chapman Black Condensed
+   - Name: Chapman Black Condensed, as vector outlines taken from the
+     résumé PDF (assets/name.svg), so no font file is needed
    - Headings: New York Extra Large Black (ui-serif on Apple devices)
    - Body: SF Pro (the Apple system font)
    - Code, links, contact: SF Mono (ui-monospace on Apple devices)
@@ -17,14 +17,12 @@
        there; these are their sRGB equivalents, upgraded to P3 below. */
     --paper: #f7f3ed;
     --ink: #204e5a;
-    --name: #2c4d59;
     --outline: #15384d;
     --fill: #bac7ce;
     --accent: #cb2d18;
     --tile: url("assets/fill.png");
     --tile-strong: url("assets/fill-strong.png");
 
-    --font-display: "Noto Serif Display", ui-serif, Georgia, serif;
     --font-serif: ui-serif, "New York", "Source Serif 4", Georgia, serif;
     --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", Inter, "Segoe UI", Roboto, sans-serif;
     --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
@@ -201,11 +199,12 @@ em,
 }
 
 .name {
-    font: 900 clamp(2.2rem, 7vw, 3.4rem)/1.08 var(--font-display);
-    letter-spacing: 0.04em;
-    font-stretch: 75%;
-    color: var(--name);
-    text-transform: uppercase;
+    margin: 2px 0 10px;
+}
+
+.name img {
+    width: 526px;
+    max-width: 100%;
 }
 
 .role {
@@ -496,6 +495,10 @@ em,
 }
 
 /* 404 page */
+
+.error-code {
+    font: 900 4rem/1 var(--font-serif);
+}
 
 .not-found {
     display: grid;
