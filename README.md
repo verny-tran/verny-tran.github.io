@@ -13,6 +13,8 @@ Plain HTML and CSS with no build step, drawn in the visual language of the Pages
 
 To add a project, copy one of the `projects/` pages, add its tile to the Projects grid in `index.html`, and list its URL in `sitemap.xml`.
 
+Every page links `styles.css` and `corners.js` with `?v=` and the first eight hex digits of the file's SHA-256 (`shasum -a 256 styles.css`). GitHub Pages lets browsers cache both for ten minutes, so after changing either file, put its new hash in every page and in `404.html`; otherwise new markup can meet the old stylesheet and the grid falls apart.
+
 ## Custom domain
 
 To move to a custom domain later (for example `verny.com`), add a `CNAME` file containing the domain, point its DNS at GitHub Pages, set the domain under Settings → Pages, and replace `https://verny-tran.github.io` in `index.html`, the `projects/` pages, `sitemap.xml` and `robots.txt`.
