@@ -656,3 +656,419 @@ em {
         break-inside: avoid;
     }
 }
+
+/* Bento: the projects and background under the résumé's opening, and the
+   project pages. Four columns over the résumé's 859 px, two below 900 px,
+   one below 600 px. Every tile is a Card, a TitledCard or a tiled Card
+   holding a Panel, as in the résumé; the row gap leaves room for a title
+   set into a border. */
+
+.page {
+    width: min(calc(100% - 48px), calc(307px + 538px + var(--gap)));
+    margin: 0 auto;
+    padding-bottom: 46px;
+}
+
+.section-title {
+    margin: 32px 0 calc(var(--gap) + var(--title-gap));
+    font: 900 28.8px/1.15 var(--font-serif);
+}
+
+.bento {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-flow: dense;
+    gap: calc(var(--gap) + var(--title-gap)) var(--gap);
+}
+
+.bento > .card--titled {
+    margin-top: 0;
+}
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 14px 16px 18px;
+}
+
+.tile.wide {
+    grid-column: span 2;
+}
+
+.tile.big {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.tile.full {
+    grid-column: 1 / -1;
+}
+
+/* A whole tile is the link: the title and the outline turn red on hover. */
+
+a.tile:hover {
+    color: inherit;
+}
+
+a.tile:hover > h2,
+a.tile:hover .tile-title {
+    color: var(--accent);
+}
+
+a.tile:hover > .corner-stroke {
+    stroke: var(--accent);
+}
+
+a.tile:not(.has-continuous-corners):hover {
+    border-color: var(--accent);
+}
+
+/* Project tiles */
+
+.app-icon,
+.package-icon {
+    flex: none;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 12px;
+    object-fit: contain;
+}
+
+.app-icon {
+    border-radius: 22.5%;
+}
+
+.tile .meta {
+    margin-bottom: 6px;
+    font-size: 14.4px;
+}
+
+.tile .lede {
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.tile .foot {
+    margin-top: auto;
+    padding-top: 12px;
+    font: 400 12.8px/1.2 var(--font-mono);
+}
+
+/* The flagship: a strong tiled card holding a Panel */
+
+.showcase {
+    padding: 17px 12px 12px;
+}
+
+.showcase .head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 14px 6px;
+}
+
+.showcase .app-icon {
+    width: 88px;
+    height: 88px;
+    margin: 0;
+}
+
+.showcase .tile-title {
+    font: 900 28.8px/1.15 var(--font-serif);
+}
+
+.showcase .inner {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+    padding: 11px 12px 12px;
+}
+
+.showcase .inner p {
+    font-size: 16px;
+    line-height: 1.25;
+    text-indent: 11px;
+}
+
+.showcase .features {
+    font: 400 16px/1.25 var(--font-mono);
+    text-indent: 0;
+}
+
+/* The graphics stack: three packages in one Panel */
+
+.engine {
+    padding: 17px 12px 12px;
+}
+
+.engine h2 {
+    margin: 0 0 14px 15px;
+}
+
+.engine .inner {
+    display: grid;
+    gap: 12px;
+    padding: 11px;
+}
+
+.engine a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.engine .package-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0;
+}
+
+.engine strong {
+    display: block;
+    font-size: 16px;
+}
+
+.engine small {
+    display: block;
+    font-size: 12.8px;
+    line-height: 1.25;
+}
+
+/* Background */
+
+.jobs {
+    padding: 25px 14px 14px 18px;
+}
+
+.jobs li + li {
+    margin-top: 11px;
+}
+
+.jobs h3 {
+    font-size: 17.6px;
+    line-height: 1.25;
+}
+
+.jobs .meta {
+    font-size: 14.4px;
+}
+
+.jobs p {
+    margin-top: 3px;
+    font-size: 12.8px;
+    line-height: 1.25;
+    text-indent: 11px;
+}
+
+.bento .education p {
+    font-size: 17.6px;
+}
+
+.bento .languages h2 {
+    margin-left: 0;
+}
+
+.bento .languages li {
+    font-size: 16px;
+}
+
+.links {
+    padding: 25px 14px 14px 18px;
+}
+
+.links ul {
+    display: grid;
+    gap: 8px;
+    font: 400 14.4px/1.2 var(--font-mono);
+}
+
+.tools {
+    padding: 17px 12px 12px;
+}
+
+.tools h2 {
+    margin: 0 0 13px 15px;
+}
+
+.tools .inner {
+    padding: 11px 12px 9px;
+    font: 400 16px/1.3 var(--font-mono);
+}
+
+/* Project pages */
+
+.topbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--gap);
+    padding: 46px 0 24px;
+}
+
+.topbar img {
+    width: 320px;
+}
+
+.topbar .back {
+    font: 400 14.4px/1.2 var(--font-mono);
+}
+
+.project-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    padding: 18px;
+}
+
+.project-head .app-icon,
+.project-head .package-icon {
+    width: 96px;
+    height: 96px;
+    margin: 0;
+}
+
+.project-head h1 {
+    margin: 2px 0 6px;
+    font: 900 28.8px/1.15 var(--font-serif);
+}
+
+.project-head .lede {
+    font-size: 19.2px;
+    line-height: 1.167;
+}
+
+.fact {
+    padding: 25px 14px 14px 18px;
+    font-size: 16px;
+    line-height: 1.25;
+}
+
+.fact ul {
+    display: grid;
+    gap: 6px;
+    font: 400 14.4px/1.2 var(--font-mono);
+}
+
+.overview {
+    padding: 27px 18px 18px;
+}
+
+.overview p,
+.overview li {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.overview p {
+    margin-top: 8px;
+    text-indent: 11px;
+}
+
+.overview h3 {
+    margin-top: 16px;
+    font-size: 19.2px;
+    font-weight: 700;
+}
+
+.overview ul {
+    margin-top: 6px;
+}
+
+.overview li {
+    padding-left: 22px;
+    text-indent: -11px;
+}
+
+.overview li + li {
+    margin-top: 6px;
+}
+
+.overview li::before {
+    content: "-";
+    display: inline-block;
+    width: 11px;
+    text-indent: 0;
+    font-weight: 590;
+}
+
+.overview a,
+.overview code {
+    font-family: var(--font-mono);
+}
+
+.overview a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+}
+
+.stack {
+    padding: 17px 12px 12px;
+}
+
+.stack h2 {
+    margin: 0 0 13px 15px;
+}
+
+.stack .inner {
+    padding: 11px 12px 9px;
+    font: 400 17.6px/1.182 var(--font-mono);
+}
+
+.page-end {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+    .page {
+        width: auto;
+        max-width: 560px;
+        padding: 0 16px 24px;
+    }
+
+    .bento {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tile.big {
+        grid-row: auto;
+    }
+
+    .jobs p {
+        font-size: 14px;
+        line-height: 1.35;
+    }
+
+    .topbar {
+        padding-top: 24px;
+    }
+
+    .topbar img {
+        width: 220px;
+    }
+}
+
+@media (max-width: 600px) {
+    .bento {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tile.wide,
+    .tile.big {
+        grid-column: auto;
+    }
+
+    .project-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
