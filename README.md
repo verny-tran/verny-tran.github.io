@@ -4,7 +4,7 @@ Personal site of Trần Trung Dũng (Verny), served by GitHub Pages from the `ma
 
 Plain HTML and CSS with no build step, drawn in the visual language of the Pages résumé (`assets/resume.pdf`): the layout, spacing, colours and emphasis are measured from the PDF, at 1.6 CSS px per point.
 
-- `index.html` opens with the résumé's two columns (portrait, contact, masthead, introduction), then shows the projects and the background as a bento grid of the résumé's cards: four columns, two below 900 px, one below 600 px.
+- `index.html` is one bento grid of the résumé's cards that follows the window: six columns from 1500 px, four from 900 px, two from 600 px, one below, up to 1800 px wide. The opening (portrait in the top left corner, masthead, introduction, contact, links) is laid out with grid areas per width; the projects and background follow, with short cards stacked in a `.cell` so a row never stretches far past its content.
 - `projects/<name>/index.html` is one page per project: role, period, platform, links, an overview and the stack. Their icons are in `assets/icons/`, 256 px.
 - Fonts are the résumé's own: SF Pro, SF Mono and New York on Apple devices, with Inter, JetBrains Mono and Source Serif 4 as fallbacks elsewhere.
 - `assets/masthead.svg` holds the name and "iOS DEVELOPER" as outlines taken from the PDF, and the contact icons in `index.html` are the PDF's glyph outlines too.
