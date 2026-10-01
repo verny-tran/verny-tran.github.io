@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;family=JetBrains+Mono:wght@400;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,900&amp;display=swap">
-    <link rel="stylesheet" href="/styles.css?v=93b03fa9">
+    <link rel="stylesheet" href="/styles.css?v=76161fe2">
     <script src="/corners.js?v=f3859f4d" defer></script>
 
     <script type="application/ld+json">
@@ -60,13 +60,17 @@
     <a class="skip-link" href="#projects">Skip to projects</a>
 
     <main>
-        <div class="layout">
-            <div class="column column--side">
-                <div class="card portrait" style="--order: 2">
+        <div class="page">
+            <div class="hero">
+                <div class="card portrait">
                     <img src="/assets/portrait.webp" width="600" height="796" alt="Portrait of Trần Trung Dũng in a striped shirt, in front of an office building">
                 </div>
 
-                <section class="card card--filled contact" style="--order: 3" aria-labelledby="contact-title">
+                <header class="masthead">
+                    <h1><img src="/assets/masthead.svg" width="538" height="141" alt="Trần Trung Dũng, iOS Developer"></h1>
+                </header>
+
+                <section class="card card--filled contact" aria-labelledby="contact-title">
                     <h2 id="contact-title" class="visually-hidden">Contact</h2>
                     <ul>
                         <li><a class="email" href="mailto:vernytran@icloud.com"><svg class="icon icon--wide" aria-hidden="true"><use href="#icon-mail"/></svg><span>vernytran<b class="w6">@icloud.com</b></span></a></li>
@@ -74,21 +78,25 @@
                         <li><a class="github" href="https://github.com/verny-tran" rel="me"><svg class="icon" aria-hidden="true"><use href="#icon-path"/></svg><span><b class="w6">github.com</b>/verny-tran</span></a></li>
                     </ul>
                 </section>
-            </div>
 
-            <div class="column column--main">
-                <header class="masthead" style="--order: 1">
-                    <h1><img src="/assets/masthead.svg" width="538" height="141" alt="Trần Trung Dũng, iOS Developer"></h1>
-                </header>
-
-                <section id="about" class="card card--filled intro" style="--order: 5" aria-labelledby="about-title">
+                <section id="about" class="card card--filled intro" aria-labelledby="about-title">
                     <h2 id="about-title">A dedicated Apple Developer</h2>
                     <p>Presently works as an <strong>iOS Engineer</strong> at <span class="w6">SilverAI</span> <span class="w5">JSC</span> in Hanoi, building AI-powered photo and video apps: object removal and retouching, <em>film emulation</em>, <em>real-time rendering</em> and on-device <em>machine learning</em>, in <span class="w5">Swift</span>, <span class="w5">Metal</span>, <span class="w5">Core Image</span>, <span class="w5">Accelerate</span>, <span class="w5">Core ML</span> and <span class="w5">AVFoundation</span>. Before that I was an <strong>iOS Engineer</strong> at <span class="w6">CELEBe Korea</span> and a <strong>Research Assistant</strong> at the <span class="w5">School of Computer Science &amp; Engineering</span>, <span class="w6">International University (VNU-HCMC)</span>, researching applied AI and mobile vision systems. I have over <span class="w5">10 years</span> of practice developing for <span class="w5">iOS</span> and <span class="w5">macOS</span>, since <span class="w5">sixth grade</span>, when iOS still adhered to the <em>skeuomorphic</em> design language. Beside the coding work, I am also a proactive <em>graphic</em>, <em>branding</em>, and <em>motion</em> designer.</p>
                 </section>
-            </div>
-        </div>
 
-        <div class="page">
+                <section id="elsewhere" class="card card--titled tile links" aria-labelledby="links-title">
+                    <h2 id="links-title">Elsewhere</h2>
+                    <ul>
+                        <li><a class="link" href="/assets/resume.pdf">Résumé (PDF)</a></li>
+                        <li><a class="link" href="https://scholar.google.com/citations?user=5uBoDD4AAAAJ" rel="me">Google Scholar</a></li>
+                        <li><a class="link" href="https://orcid.org/0009-0004-7234-1215" rel="me">ORCID</a></li>
+                        <li><a class="link" href="https://www.researchgate.net/profile/Dung-Tran-92" rel="me">ResearchGate</a></li>
+                        <li><a class="link" href="https://medium.com/@vernytran" rel="me">Medium</a></li>
+                        <li><a class="link" href="https://stackoverflow.com/users/12090561/tr%E1%BA%A7n-t-d%C5%A9ng" rel="me">Stack Overflow</a></li>
+                    </ul>
+                </section>
+            </div>
+
             <h2 id="projects" class="section-title">Projects</h2>
             <div class="bento">
                 <a class="card card--tiled card--tiled-strong tile big showcase" href="/projects/snapedit/">
@@ -102,7 +110,8 @@
                     <div class="inner">
                         <p>The AI photo and video editor I have worked on since <span class="w5">May 2024</span>, rated <span class="w5">4.8</span> from more than <span class="w5">14,000</span> reviews on the App Store.</p>
                         <p class="features">Object removal, Super Erase, Enhance, Retouch &amp; beauty, Video, Frames &amp; effects.</p>
-                        <p><span class="w5">500+ commits</span> on the iOS app: editing features, the camera and the effect pipeline, rendered on device with <span class="mono">Core Image</span> and <span class="mono">Metal</span>.</p>
+                        <p><span class="w5">500+ commits</span> on the iOS app: editing features, the camera and the effect pipeline, rendered on device with <span class="mono">Core Image</span> and <span class="mono">Metal</span> through <span class="w6">SnapStudio</span> and <span class="w6">SnapEngine</span>.</p>
+                        <p>I also moved its logic into a tested Swift package, and run the nightly tests and the TestFlight pipelines that ship it.</p>
                         <p class="foot">★ 4.8 · 14k ratings · App Store</p>
                     </div>
                 </a>
@@ -147,6 +156,7 @@
                     <img class="package-icon" src="/assets/icons/attendancekit.png" width="256" height="256" alt="">
                     <p class="meta">VNU-HCM · Research</p>
                     <p class="lede">Automatic attendance with face recognition, UHF RFID and NFC.</p>
+                    <p class="lede more">Role-based iOS and macOS apps in use at VNU-HCM International University, and the subject of two papers and two VNU-HCM grants.</p>
                     <p class="foot">FDSE 2022 · SN Computer Science</p>
                 </a>
             </div>
@@ -173,6 +183,18 @@
                     </ul>
                 </section>
 
+                <section class="card card--titled tile wide grants" aria-labelledby="grants-title">
+                    <h2 id="grants-title">Grants</h2>
+                    <article>
+                        <h3><strong>B2023-30-05:</strong> Developing a federated learning algorithm for autonomous attendance systems based on camera and long-range RFID.</h3>
+                        <p class="funded">Funded by <span class="w6">VNU-HCM</span> under grant number <span class="mono">B2023-30-05</span> <strong>(level B)</strong>. <strong>Total funding:</strong> <span class="mono">$29.000</span>. I am a key member.</p>
+                    </article>
+                    <article>
+                        <h3><strong>C2022-28-10:</strong> Face recognition enhancement utilizing on-device machine learning.</h3>
+                        <p class="funded">Funded by <span class="w6">VNU-HCM</span> under grant number <span class="mono">C2022-28-10</span> <span class="w6">(level C)</span>. <strong>Total funding:</strong> <span class="mono">$3.500</span>. I am the main co-investigator.</p>
+                    </article>
+                </section>
+
                 <section id="research" class="card card--titled tile wide publications" aria-labelledby="publications-title">
                     <h2 id="publications-title">Publications</h2>
                     <ol>
@@ -190,7 +212,6 @@
                 <section class="card card--titled tile wide awards" aria-labelledby="awards-title">
                     <h2 id="awards-title">Awards</h2>
                     <ul>
-                        <li><strong>Award Recipient:</strong> Swift Student Challenge (<span class="mono">WWDC21</span>) - <span class="meta">Apple · <time datetime="2021-06">Jun 2021</time></span></li>
                         <li><strong>Second Prize:</strong> Nationwide Contest for excellent students in Informatics - <span class="meta">Vietnam Ministry of Education and Training · <time datetime="2016-01">Jan 2016</time></span>
                             <p class="note"><span class="w6">-</span> For the discipline of <span class="w6">Hardware Development</span>.</p></li>
                         <li><strong>Second Prize:</strong> ICT Nationwide Contest - <span class="meta">Vietnam Ministry of Education and Training &amp; the Central Committee of Youth Union · <time datetime="2015-08">Aug 2015</time></span></li>
@@ -200,48 +221,36 @@
                     </ul>
                 </section>
 
-                <section class="card card--titled tile wide grants" aria-labelledby="grants-title">
-                    <h2 id="grants-title">Grants</h2>
-                    <article>
-                        <h3><strong>B2023-30-05:</strong> Developing a federated learning algorithm for autonomous attendance systems based on camera and long-range RFID.</h3>
-                        <p class="funded">Funded by <span class="w6">VNU-HCM</span> under grant number <span class="mono">B2023-30-05</span> <strong>(level B)</strong>. <strong>Total funding:</strong> <span class="mono">$29.000</span>. I am a key member.</p>
-                    </article>
-                    <article>
-                        <h3><strong>C2022-28-10:</strong> Face recognition enhancement utilizing on-device machine learning.</h3>
-                        <p class="funded">Funded by <span class="w6">VNU-HCM</span> under grant number <span class="mono">C2022-28-10</span> <span class="w6">(level C)</span>. <strong>Total funding:</strong> <span class="mono">$3.500</span>. I am the main co-investigator.</p>
-                    </article>
-                </section>
+                <div class="cell">
+                    <section class="card card--titled tile education" aria-labelledby="education-title">
+                        <h2 id="education-title">Education</h2>
+                        <p><strong>BSc. in Computer Science:</strong> International University <span class="w5">(Engineering)</span> - <span class="meta">Vietnam National University HCMC · 2018 – 2023</span>.</p>
+                    </section>
 
-                <section class="card card--titled tile wide education" aria-labelledby="education-title">
-                    <h2 id="education-title">Education</h2>
-                    <p><strong>BSc. in Computer Science:</strong> International University <span class="w5">(Engineering)</span> - <span class="meta">Vietnam National University HCMC · 2018 – 2023</span>.</p>
-                </section>
+                    <section class="card card--titled tile awards wwdc" aria-labelledby="wwdc-title">
+                        <h2 id="wwdc-title">WWDC21</h2>
+                        <ul>
+                            <li><strong>Award Recipient:</strong> Swift Student Challenge (<span class="mono">WWDC21</span>) - <span class="meta">Apple · <time datetime="2021-06">Jun 2021</time></span></li>
+                        </ul>
+                    </section>
+                </div>
 
-                <section class="card card--tiled tile languages" aria-labelledby="languages-title">
-                    <h2 id="languages-title">Languages</h2>
-                    <ul>
-                        <li><span class="w6">Vietnamese</span> (Native)</li>
-                        <li><span class="w6">English</span> (Professional)</li>
-                        <li><span class="w6">Russian</span> (Elementary)</li>
-                        <li><span class="w6">Korean</span> (Elementary)</li>
-                    </ul>
-                </section>
+                <div class="cell cell--wide">
+                    <section class="card card--tiled card--tiled-strong tile tools" aria-labelledby="tools-title">
+                        <h2 id="tools-title">Programming</h2>
+                        <p class="inner">Swift, Objective-C, Objective-C++, C, C++, Metal Shading Language, GLSL, Python · Metal, Core Image, Core ML, Vision, Accelerate, AVFoundation, SwiftUI, UIKit, ARKit · PyTorch, coremltools, OpenCV · Figma, Adobe Creative Cloud.</p>
+                    </section>
 
-                <section id="elsewhere" class="card card--titled tile links" aria-labelledby="links-title">
-                    <h2 id="links-title">Elsewhere</h2>
-                    <ul>
-                        <li><a class="link" href="/assets/resume.pdf">Résumé (PDF)</a></li>
-                        <li><a class="link" href="https://scholar.google.com/citations?user=5uBoDD4AAAAJ" rel="me">Google Scholar</a></li>
-                        <li><a class="link" href="https://orcid.org/0009-0004-7234-1215" rel="me">ORCID</a></li>
-                        <li><a class="link" href="https://www.researchgate.net/profile/Dung-Tran-92" rel="me">ResearchGate</a></li>
-                        <li><a class="link" href="https://medium.com/@vernytran" rel="me">Medium</a></li>
-                    </ul>
-                </section>
-
-                <section class="card card--tiled card--tiled-strong tile full tools" aria-labelledby="tools-title">
-                    <h2 id="tools-title">Programming</h2>
-                    <p class="inner">Swift, Objective-C, Objective-C++, C, C++, Metal Shading Language, GLSL, Python · Metal, Core Image, Core ML, Vision, Accelerate, AVFoundation, SwiftUI, UIKit, ARKit · PyTorch, coremltools, OpenCV · Figma, Adobe Creative Cloud.</p>
-                </section>
+                    <section class="card card--tiled tile languages" aria-labelledby="languages-title">
+                        <h2 id="languages-title">Languages</h2>
+                        <ul>
+                            <li><span class="w6">Vietnamese</span> (Native)</li>
+                            <li><span class="w6">English</span> (Professional)</li>
+                            <li><span class="w6">Russian</span> (Elementary)</li>
+                            <li><span class="w6">Korean</span> (Elementary)</li>
+                        </ul>
+                    </section>
+                </div>
             </div>
         </div>
     </main>
