@@ -167,3 +167,247 @@ footer {
         padding: 40px 20px;
     }
 }
+
+/**
+*  Bento grid
+*  Built on the Foundation theme above, with its cards, radii and colours
+*/
+
+header nav ul {
+    list-style: none;
+}
+
+.bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: dense;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    min-height: 180px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #eee;
+    text-decoration: none;
+}
+
+a.tile {
+    transition: transform 0.2s ease;
+}
+
+a.tile:hover {
+    transform: translateY(-3px);
+}
+
+.tile.wide {
+    grid-column: span 2;
+}
+
+.tile.big {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.tile.full {
+    grid-column: 1 / -1;
+}
+
+.tile .highlights {
+    margin: 20px 0 15px;
+}
+
+.tile li a {
+    text-decoration: none;
+}
+
+.tile li a:hover strong {
+    text-decoration: underline;
+}
+
+.tile h1 {
+    margin-bottom: 10px;
+    font-size: 2em;
+}
+
+.tile h2 {
+    margin: 0 0 6px;
+    font-size: 1.2em;
+}
+
+.tile.big h2 {
+    font-size: 1.8em;
+}
+
+.tile p,
+.tile li {
+    font-size: 0.95em;
+    line-height: 1.4em;
+}
+
+.tile ul,
+.tile ol {
+    list-style: none;
+}
+
+.tile li {
+    margin-bottom: 6px;
+}
+
+.tile .tag-list {
+    margin-bottom: 0;
+}
+
+.tile .tag-list li {
+    margin-bottom: 6px;
+    font-size: 0.85em;
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 0.75em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.meta {
+    margin-top: auto;
+    padding-top: 10px;
+    color: #666;
+    font-size: 0.85em;
+}
+
+.app-icon,
+.package-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 12px;
+    object-fit: contain;
+}
+
+.app-icon {
+    border-radius: 22.5%;
+}
+
+.tile.big .app-icon {
+    width: 96px;
+    height: 96px;
+}
+
+.stack-list li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.stack-list .package-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0;
+}
+
+.stack-list strong {
+    display: block;
+}
+
+.project-head {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.project-head .app-icon,
+.project-head .package-icon {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 0;
+}
+
+.project-head h1 {
+    margin-bottom: 6px;
+}
+
+.project-head .description {
+    margin-bottom: 0;
+}
+
+.project .tile {
+    min-height: 0;
+}
+
+.content h2 {
+    margin-top: 30px;
+}
+
+.content p,
+.content li {
+    line-height: 1.5em;
+}
+
+.content ul {
+    margin: 0 0 10px 20px;
+}
+
+.content li {
+    margin-bottom: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tile {
+        background-color: #333;
+    }
+
+    .eyebrow,
+    .meta {
+        color: #aaa;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    a.tile {
+        transition: none;
+    }
+
+    a.tile:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .bento {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tile {
+        min-height: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .bento {
+        grid-template-columns: 1fr;
+    }
+
+    .tile.wide,
+    .tile.big {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .project .bento {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
